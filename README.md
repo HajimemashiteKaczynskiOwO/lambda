@@ -1,3 +1,5 @@
+> "Welcome to City 17. You have chosen, or been chosen, to relocate to one of our finest remaining urban centers."
+
 # COMBINE CITIZEN INTRANET SYSTEM v17.3
 
 
@@ -27,11 +29,8 @@ The combat simulation module allows citizens to engage in controlled, non-violen
 
 #### 3. **PERFORMANCE METRICS DATABASE**
 
-
 Every citizen interaction generates valuable data points. The system analyzes:
-- Competitive success rates
-- Participation frequency
-- Social connectivity patterns
-- Behavioral predictability indices
-
-#### 4. **VISUAL INTERFACE & AESTHETICS**
+- Competitive success rates (Winrate)
+- Participation frequency (Amount of played matches)
+- Social connectivity patterns (Who you've played with/against)
+- Behavioral predictability indices (Based on winrate, if you're more likely to lose)
