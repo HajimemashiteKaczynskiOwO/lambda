@@ -12,8 +12,6 @@ export const load = async ({ params }) => {
 		});
 
 		if (!player) return { player: null, matches: [] };
-
-		// Combine matches and sort by date (newest first)
 		const matches = [...player.gamesAsPlayer1, ...player.gamesAsPlayer2].sort(
 			(a, b) => new Date(b.createdAt) - new Date(a.createdAt)
 		);

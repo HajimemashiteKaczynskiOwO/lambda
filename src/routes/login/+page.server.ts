@@ -9,42 +9,39 @@ export const actions: Actions = {
 		const username = data.get('new-username');
 		const password = data.get('new-password');
 
-		// Din uppgift: Validering - vad ska du kolla?
 		if (!username || username.toString().trim() === '') {
 			return fail(400, { error: 'Username needed' });
 		}
-
-		// Lägg till fler valideringar:
-		// - Password för kort? yes:
 		if (!password || password.toString().trim() === '') {
 			return fail(400, { error: 'Password needed' });
 		}
-    if (password.toString().length < 6) {
-      return fail(400, { error: 'Password too short! Enter more than 6 characters' });
-    }
+
+		if (password.toString().length < 6) {
+			return fail(400, { error: 'Password too short! Enter more than 6 characters' });
+		}
 		// - Username för kort? yis:
 		if (username.toString().length < 3) {
 			return fail(400, { error: 'Username too short! Enter more than 3 characters' });
 		}
-    //långt?
-    if (username.toString().length > 16) {
-      return fail(400, { error: 'Username too long! Enter less than 16 characters' });
-    }
+		//långt?
+		if (username.toString().length > 16) {
+			return fail(400, { error: 'Username too long! Enter less than 16 characters' });
+		}
 		// - Ogiltiga tecken? yup:
 		const usernameRegex = /^[a-zA-Z0-9_]+$/;
 		if (!usernameRegex.test(username.toString())) {
 			return fail(400, { error: 'Username contains invalid characters' });
 		}
 
-  const normalizedUsername = username.trim().toLowerCase();
+		const normalizedUsername = username.trim().toLowerCase();
 
-  const existingUser = await prisma.player.findUnique({
-    where: { username: normalizedUsername }
-  });
+		const existingUser = await prisma.player.findUnique({
+			where: { username: normalizedUsername }
+		});
 
-  if (existingUser) {
-    return fail(400, { error: 'Username already exists.' });
-  }
+		if (existingUser) {
+			return fail(400, { error: 'Username already exists.' });
+		}
 
 		try {
 			const newUser = await prisma.player.create({
@@ -60,9 +57,7 @@ export const actions: Actions = {
 				secure: false,
 				httpOnly: true
 			});
-
-			// Vart ska användaren skickas efter registrering?
-      console.log('User registered:', newUser.username +'or'+ normalizedUsername);
+			console.log('User registered:', newUser.username + 'or' + normalizedUsername);
 			throw redirect(303, '/dashboard');
 		} catch (error) {
 			return fail(500, { error: 'Error creating user' });
@@ -77,7 +72,7 @@ export const actions: Actions = {
 		if (!username || !password) {
 			return fail(400, { error: 'Username and password required' });
 		}
-    const normalizedUsername = username.trim().toLowerCase();
+		const normalizedUsername = username.trim().toLowerCase();
 		const user = await prisma.player.findUnique({
 			where: { username: normalizedUsername }
 		});

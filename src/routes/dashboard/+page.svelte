@@ -1,7 +1,5 @@
 <script>
 	export let data;
-
-
 </script>
 
 <div class="profile-container">
@@ -10,7 +8,7 @@
 			<div class="profile-title">OPERATIVE PROFILE</div>
 			<div class="profile-symbol">λ</div>
 		</div>
-		
+
 		<div class="profile-content">
 			<div class="username-display">
 				<span class="username-label">IDENTIFICATION:</span>
@@ -18,25 +16,25 @@
 					{data.user.username}
 				</span>
 			</div>
-			
+
 			<div class="profile-info">
 				<div class="info-line">
 					<span class="info-label">MATCHES PLAYED:</span>
 					<span class="info-value">{data.user.matches}</span>
 				</div>
-				
+
 				<div class="info-line">
 					<span class="info-label">WINS:</span>
 					<span class="info-value">{data.user.wins}</span>
 				</div>
-				
+
 				<div class="info-line">
 					<span class="info-label">LAST ACTIVITY:</span>
 					<span class="info-value status-active">{data.user.updatedAt}</span>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="profile-actions">
 			<a href="/characters" class="action-btn">OPERATIVES</a>
 			<a href="/games" class="action-btn">MATCHES</a>
@@ -215,11 +213,7 @@
 		left: -100%;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(90deg, 
-			transparent,
-			rgba(255, 217, 90, 0.1),
-			transparent
-		);
+		background: linear-gradient(90deg, transparent, rgba(255, 217, 90, 0.1), transparent);
 		transition: left 0.5s ease;
 	}
 

@@ -1,5 +1,5 @@
 <script>
-	export let form; // För att visa fel-meddelanden från servern
+	export let form; 
 	import { enhance } from '$app/forms';
 
 	let loading = false;
@@ -10,11 +10,8 @@
 <form method="POST" action="?/login">
 	<div>
 		<label for="username">Username:</label>
-		<!-- Din input här - vilka attribut behöver den? -->
 		<input id="username" type="text" name="username" required placeholder="username.." />
 	</div>
-
-	<!-- Din uppgift: Lägg till password-fält på samma sätt -->
 	<div>
 		<label for="password">Password:</label>
 		<input id="password" type="password" name="password" required placeholder="password.." />
@@ -44,18 +41,12 @@
 
 	<button type="submit">Registrera</button>
 </form>
-<!-- Register-formulär -->
-<!-- Din uppgift: Skapa register-formuläret -->
-<!-- Tips: använd action="?/register" -->
 
-<!-- Visa fel-meddelanden om de finns -->
 {#if form?.error}
 	<div class="error">{form.error}</div>
 {/if}
 
 <style>
-	/* Din uppgift: Lägg till styling */
-	/* Tips: formulär behöver struktur och spacing */
 	form {
 		margin-bottom: 2rem;
 		padding: 1rem;
