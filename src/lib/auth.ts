@@ -1,43 +1,31 @@
 import { prisma } from '$lib';
 import { redirect } from '@sveltejs/kit';
 
-// Din uppgift: Implementera denna funktion
 export async function requireAuth(cookies: any) {
-  // 1. Få userId från cookies
-  const userId = cookies.get('userId');
-  
-  // 2. Om ingen cookie: redirect till login
-  if (!userId) {
-    redirect(302, '/login');
-  }
-  
-  // 3. Hitta användare i databas
-  const user = await prisma.player.findUnique({
-    where: { id: userId }
-  });
-  
-  // 4. Om användare inte finns: rensa cookie och redirect
-  if (!user) {
-    // Hur tar du bort en cookie?
-    cookies.delete('userId', { path: '/' });
-    // Redirect till login
-    redirect(303, '/login');
-  }
-  
-  // 5. Returnera användaren
-  return user;
+	const userId = cookies.get('userId');
+
+	if (!userId) {
+		redirect(302, '/login');
+	}
+
+	const user = await prisma.player.findUnique({
+		where: { id: userId }
+	});
+
+	if (!user) {
+		cookies.delete('userId', { path: '/' });
+		redirect(303, '/login');
+	}
+
+	return user;
 }
 
-// Bonus: Skapa en "optional auth" funktion
 export async function getUser(cookies: any) {
-  // Din uppgift: Som requireAuth men utan redirect
-    const userId = cookies.get('userId');
-    if (!userId) return null;
+	const userId = cookies.get('userId');
+	if (!userId) return null;
 
-    const user = await prisma.player.findUnique({
-      where: { id: userId }
-    });
-  // Returnera user eller null
-    return user || null;
-  
+	const user = await prisma.player.findUnique({
+		where: { id: userId }
+	});
+	return user || null;
 }

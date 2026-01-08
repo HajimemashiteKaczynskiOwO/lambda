@@ -15,8 +15,8 @@ const config = {
 	}
 };
 export default {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter()
-  }
+	preprocess: vitePreprocess(),
+	kit: {
+		adapter: adapter()
+	}
 };

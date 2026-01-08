@@ -2,7 +2,6 @@
 
 # COMBINE CITIZEN INTRANET SYSTEM v17.3
 
-
 ## λ-LAMBDA COMPLEX INTRANET
 
 ### ADMINISTRATIVE OVERVIEW
@@ -22,6 +21,7 @@ All citizens must register with a unique identifier. The system tracks engagemen
 #### 2. **COMBAT SIMULATION ARENA**
 
 The combat simulation module allows citizens to engage in controlled, non-violent competitions. This serves multiple administrative purposes:
+
 - Channeling competitive impulses into approved activities
 - Gathering behavioral data for citizen profiling
 - Identifying potential recruitment candidates for Civil Protection
@@ -30,6 +30,7 @@ The combat simulation module allows citizens to engage in controlled, non-violen
 #### 3. **PERFORMANCE METRICS DATABASE**
 
 Every citizen interaction generates valuable data points. The system analyzes:
+
 - Competitive success rates (Winrate)
 - Participation frequency (Amount of played matches)
 - Social connectivity patterns (Who you've played with/against)
