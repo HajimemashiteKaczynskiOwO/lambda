@@ -7,7 +7,32 @@
 		<div class="profile-header">
 			<div class="profile-title">OPERATIVE PROFILE</div>
 			<div class="profile-symbol">λ</div>
+			<div class="editbtn">
+				<form method="POST" action="?/upload" enctype="multipart/form-data">
+					<input type="file" name="image" accept="image/*" />
+					<button type="submit">Change Profile Picture </button>
+				</form>
+			</div>
 		</div>
+
+{#if data.user.profilePicture}
+		<div class="profile-picture-holder">
+			<img
+				src={data.user.profilePicture.url}
+				alt="Profile Picture"
+				class="profile-picture"
+			/>
+		</div>
+{:else}
+		<div class="profile-picture-holder">
+			<img
+				src="/images/profPic.png"
+				alt="Default Profile Picture"
+				class="profile-picture"
+			/>
+		</div>
+
+{/if}
 
 		<div class="profile-content">
 			<div class="username-display">
@@ -63,6 +88,10 @@
 		border: 3px solid #8b7355;
 		padding: 30px;
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 
 	.profile-card::before {
@@ -80,6 +109,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		width: 100%;
 		margin-bottom: 30px;
 		padding-bottom: 15px;
 		border-bottom: 2px solid #8b7355;
@@ -97,7 +127,28 @@
 		color: #ff5a5a;
 	}
 
+	.profile-picture-holder {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 3px solid #8b7355;
+		position: relative;
+		background: rgba(10, 8, 5, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 30px auto;
+	}
+
+	.profile-picture {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
 	.profile-content {
+		width: 100%;
 		margin-bottom: 30px;
 	}
 
@@ -105,7 +156,8 @@
 		background: rgba(10, 8, 5, 0.7);
 		padding: 20px;
 		margin-bottom: 20px;
-		border-left: 4px solid #8b7355;
+		border-top: 4px solid #8b7355;
+		border-left: none;
 	}
 
 	.username-label {
@@ -131,6 +183,7 @@
 		position: absolute;
 		top: 10px;
 		left: 0;
+		width: 100%;
 		color: rgba(255, 90, 90, 0.3);
 		z-index: 1;
 	}
@@ -170,6 +223,7 @@
 		display: flex;
 		gap: 15px;
 		flex-wrap: wrap;
+		width: 100%;
 	}
 
 	.action-btn {
@@ -237,6 +291,12 @@
 			gap: 10px;
 		}
 
+		.profile-picture-holder {
+			width: 180px;
+			height: 180px;
+			margin: 0 auto 20px auto;
+		}
+
 		.username-value {
 			font-size: 1.5em;
 		}
@@ -244,6 +304,7 @@
 		.info-line {
 			flex-direction: column;
 			gap: 5px;
+			text-align: center;
 		}
 
 		.profile-actions {
@@ -258,6 +319,11 @@
 	@media (max-width: 480px) {
 		.profile-title {
 			font-size: 1.2em;
+		}
+
+		.profile-picture-holder {
+			width: 150px;
+			height: 150px;
 		}
 
 		.username-display,

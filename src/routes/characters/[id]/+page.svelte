@@ -6,6 +6,13 @@
 
 <div class="player-stats">
 	{#if player}
+	<div class="profilepic-holder">
+		{#if player.profilePicture?.url}
+  <img src={player.profilePicture.url} alt="Profile Picture" class="profilepic" />
+{:else}
+  <img src="/images/profPic.png" alt="Default Profile Picture" class="profilepic" />
+{/if}
+	</div>
 		<h1 class="bigName">{player.username}</h1>
 
 		<div class="stats-grid">
@@ -91,6 +98,25 @@
 		padding: 20px;
 		font-family: monospace;
 		color: #c9b68a;
+	}
+
+	.profilepic-holder {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 3px solid #8b7355;
+		position: relative;
+		background: rgba(10, 8, 5, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 30px auto;
+	}
+	.profilepic {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.player-stats {

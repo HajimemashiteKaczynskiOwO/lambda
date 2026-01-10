@@ -7,7 +7,8 @@ export const load = async ({ params }) => {
 			include: {
 				gamesAsPlayer1: true,
 				gamesAsPlayer2: true,
-				winsAsWinner: true
+				winsAsWinner: true,
+				profilePicture: true
 			}
 		});
 

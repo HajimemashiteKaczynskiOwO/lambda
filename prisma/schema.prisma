@@ -21,6 +21,8 @@ model Player {
   gamesAsPlayer1 Game[]   @relation("Player1Games")
   gamesAsPlayer2 Game[]   @relation("Player2Games")
   winsAsWinner   Game[]   @relation("WinnerGames")
+  profilePicture Image?
+
 }
 
 model Game {
@@ -37,4 +39,14 @@ model Game {
   player1     Player   @relation("Player1Games", fields: [player1Id], references: [id])
   player2     Player   @relation("Player2Games", fields: [player2Id], references: [id])
   winner      Player   @relation("WinnerGames", fields: [winnerId], references: [id])
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  url       String
+  createdAt DateTime @default(now())
+  encoding String
+  
+  playerId  String @unique
+  player   Player   @relation(fields: [playerId], references: [id])
 }
