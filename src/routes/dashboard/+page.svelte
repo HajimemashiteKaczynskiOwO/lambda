@@ -1,5 +1,17 @@
 <script>
 	export let data;
+	import { enhance } from '$app/forms';
+	
+	let uploading = false;
+	//pfp preview
+	let previewUrl = '';
+
+	function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (file) {
+	  previewUrl = URL.createObjectURL(file);
+    }
+  }
 </script>
 
 <div class="profile-container">
@@ -8,9 +20,16 @@
 			<div class="profile-title">OPERATIVE PROFILE</div>
 			<div class="profile-symbol">λ</div>
 			<div class="editbtn">
-				<form method="POST" action="?/upload" enctype="multipart/form-data">
-					<input type="file" name="image" accept="image/*" />
-					<button type="submit">Change Profile Picture </button>
+				<form 
+				method="POST" action="?/upload" enctype="multipart/form-data"
+				use:enhance={() => {uploading = true; return async ({ update }) =>
+				{await update(); uploading = false; }; }} >
+
+					<input type="file" disabled={uploading} on:change={handleFileSelect} name="image" accept="image/*" />
+					{#if previewUrl}
+						<img src={previewUrl} alt="Preview" class="preview-image" />
+					{/if}
+					<button type="submit" disabled={uploading}>{uploading ? 'Uploading...' : 'Upload Image'}</button>
 				</form>
 			</div>
 		</div>
@@ -81,6 +100,12 @@
 		max-width: 800px;
 		margin: 0 auto;
 		width: 100%;
+	}
+	.preview-image {
+		margin-top: 10px;
+		max-width: 100px;
+		border: 2px solid #8b7355;
+		border-radius: 5px;
 	}
 
 	.profile-card {
