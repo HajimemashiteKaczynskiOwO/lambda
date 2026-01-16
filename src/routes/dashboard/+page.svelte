@@ -42,6 +42,15 @@
 				class="profile-picture"
 			/>
 		</div>
+		<div class="deletebtn">
+			<form 
+			method="POST" action="?/delete" 
+			use:enhance={() => {uploading = true; return async ({ update }) =>
+			{await update(); uploading = false; }; }} >
+
+				<button type="submit" disabled={uploading}>{uploading ? 'Processing...' : 'Delete Image'}</button>
+			</form>
+		</div>
 {:else}
 		<div class="profile-picture-holder">
 			<img

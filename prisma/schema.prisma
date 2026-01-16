@@ -10,7 +10,8 @@ datasource db {
 model Player {
   id             String   @id @default(uuid())
   username       String   @unique
-  password       String
+  salt           String
+  hash           String
   wins           Int      @default(0)
   losses         Int      @default(0)
   matches        Int      @default(0)

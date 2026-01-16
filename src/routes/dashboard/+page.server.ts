@@ -64,5 +64,19 @@ upload: async ({ request,cookies }) => {
 		});
 	
 	return redirect(303, '/dashboard');
+	},
+delete: async ({ cookies }) => {
+	const user = await requireAuth(cookies);
+		if (!user) {
+			return fail(401, { success: false, message: 'Not authenticated' });
+		}
+		
+	await prisma.image.deleteMany({
+		where: {
+			playerId: user.id
+		}
+	});
+	
+	return redirect(303, '/dashboard');
 	}
 };
