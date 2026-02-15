@@ -6,13 +6,13 @@
 
 <div class="player-stats">
 	{#if player}
-	<div class="profilepic-holder">
-		{#if player.profilePicture?.url}
-  <img src={player.profilePicture.url} alt="Profile Picture" class="profilepic" />
-{:else}
-  <img src="/images/profPic.png" alt="Default Profile Picture" class="profilepic" />
-{/if}
-	</div>
+		<div class="profilepic-holder">
+			{#if player.profilePicture?.url}
+				<img src={player.profilePicture.url} alt="Profile Picture" class="profilepic" />
+			{:else}
+				<img src="/images/profPic.png" alt="Default Profile Picture" class="profilepic" />
+			{/if}
+		</div>
 		<h1 class="bigName">{player.username}</h1>
 
 		<div class="stats-grid">

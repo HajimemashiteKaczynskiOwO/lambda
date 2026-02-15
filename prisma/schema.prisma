@@ -23,6 +23,10 @@ model Player {
   gamesAsPlayer2 Game[]   @relation("Player2Games")
   winsAsWinner   Game[]   @relation("WinnerGames")
   profilePicture Image?
+
+  sessions       Session[]
+  tokenCreatedAt DateTime?
+  lastActive     DateTime?
 }
 
 model Game {
@@ -48,4 +52,14 @@ model Image {
   encoding  String
   playerId  String   @unique
   player    Player   @relation(fields: [playerId], references: [id])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  playerId     String
+  player       Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  lastUsed     DateTime @default(now())
+  expiresAt    DateTime
 }
